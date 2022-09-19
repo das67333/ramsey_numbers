@@ -30,6 +30,7 @@ public:
     Graph(NumV n) : n_(n) {
         assert(n <= N_MAX);
     }
+    void SetEdge(int v1, int v2);
     void SetEdges(NumG key);
     void Complement();
     void Print() const;
@@ -77,6 +78,11 @@ NumG GraphsNum::BenchmarkHelper(NumV n, NumG key_start, NumG key_max, NumG task_
         --task_size;
     }
     return s;
+}
+
+void Graph::SetEdge(int v1, int v2) {
+    e_[v1] |= (Bitset(1) << v2);
+    e_[v2] |= (Bitset(1) << v1);
 }
 
 void Graph::SetEdges(NumG key) {
